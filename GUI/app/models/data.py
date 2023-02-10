@@ -3,7 +3,7 @@
 import requests
 import json
 import os
-
+import pandas as pd
 
 execution_path = os.path.dirname(os.path.abspath(__file__))
 
@@ -55,5 +55,10 @@ class DataModel(object):
         if os.path.exists(path):
             return path
 
+    @classmethod
+    def convert_json_to_xlsx(self, json_file_path : str, xlsx_file_path : str):
+
         
+        df = pd.read_json(json_file_path)
+        df.to_excel(xlsx_file_path)
 

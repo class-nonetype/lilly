@@ -118,7 +118,6 @@ class Controller(object):
         file_extension = str(self.View.MainView.lineEditSelectedFile.text()).split('.')[-1]
         
         if file_extension == 'json':
-            self.View.MainView.labelSelectedFile.setText('Archivo seleccionado')
             
             with open(self.View.MainView.lineEditSelectedFile.text(), 'r') as json_file:
                 content = json_file.read()
@@ -147,7 +146,6 @@ class Controller(object):
     
 
     def select_file(self):
-        self.View.MainView.labelSelectedFile.setText('Archivo seleccionado')
         
         selected_file = QtWidgets.QFileDialog.getOpenFileName(
             self.View.MainView,
@@ -159,7 +157,6 @@ class Controller(object):
 
 
     def select_directory(self):
-        self.View.MainView.labelSelectedFile.setText('Directorio seleccionado')
         
         selected_directory = QtWidgets.QFileDialog.getExistingDirectory(
             self.View.MainView,
@@ -216,11 +213,15 @@ class Controller(object):
 
     
 
-    def export_data(self):
+    def convert_json_to_xlsx(self):
 
         try:
-            file_name = QtWidgets.QFileDialog.getSaveFileName(self.View.MainView, 'Guardar el archivo', './', 'Libro de Excel (*.xlsx)')[0]
-            print('Exportado')
+            xlsx_file_path = QtWidgets.QFileDialog.getSaveFileName(self.View.MainView, 'Guardar el archivo', './', 'Libro de Excel (*.xlsx)')[0]
+            
+            self.Model.DataModel.convert_json_to_xlsx(
+                json_file_path = self.View.MainView.lineEditSelectedFile.text(),
+                xlsx_file_path = xlsx_file_path
+            )
 
         except Exception as exc:
             print(exc)
@@ -266,7 +267,9 @@ class Controller(object):
 
     
     def save_requested_data(self):
+        
         file = QtWidgets.QFileDialog.getSaveFileName(self.View.MainView, 'Guardar el archivo', './', 'Archivo JSON (*.json)')[0]
+
         
         try:
             return self.Model.DataModel.save_data(file, self.View.EditorView.textEditJson.toPlainText())

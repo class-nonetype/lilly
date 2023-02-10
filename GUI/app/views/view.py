@@ -134,6 +134,9 @@ class View(object):
         
         self.MainView.pushButtonSelectDirectory.clicked.connect(self.Controller.select_directory)
         self.MainView.pushButtonSelectFile.clicked.connect(self.Controller.select_file)
+        
+        self.MainView.pushButtonConvertJSONToXLSX.clicked.connect(self.Controller.convert_json_to_xlsx)
+        
 
 
         self.Controller.system_file_browser()

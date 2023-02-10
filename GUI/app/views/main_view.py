@@ -1370,6 +1370,7 @@ class MainView(QtWidgets.QMainWindow):
         self.pushButtonSaveRequestedData.setText(_translate(
             "MainWindow", "\t\t\tGuardar archivo extraido"))
 
+
         self.pushButtonExecuteSelectedFile.setText(
             _translate("MainWindow", "\t\t\tEjecutar archivo"))
         self.pushButtonSelectFile.setText(_translate(
@@ -1380,7 +1381,7 @@ class MainView(QtWidgets.QMainWindow):
         self.pushButtonConvertJSONToXLSX.setText(
             _translate("MainWindow", "\t\t\tConvertir JSON a XLSX"))
 
-        self.labelSelectedFile.setText(_translate("MainWindow", ""))
+        self.labelSelectedFile.setText(_translate("MainWindow", "Seleccionado"))
 
         self.labeTitleMode.setText(_translate("MainWindow", "Modo"))
         self.radioButtonLightMode.setText(
