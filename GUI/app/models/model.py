@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 
 from app.models.data import DataModel
@@ -28,6 +29,7 @@ class Model(object):
         self.FileSystemModel.setRootPath('')
         
         self.JsonModel = JsonModel()
+        
         
 
     def set_struct(self, struct):

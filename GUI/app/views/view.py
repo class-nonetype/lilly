@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 
 from app.views.main_view import MainView
@@ -143,8 +144,7 @@ class View(object):
 
             self.MainView.radioButtonLightMode.setChecked(True)
 
-            self.MainView.treeViewSystem.setModel(
-                self.Controller.Model.FileSystemModel)
+
             self.MainView.treeViewSystem.setAnimated(True)
             self.MainView.treeViewSystem.setIndentation(20)
             self.MainView.treeViewSystem.setSortingEnabled(True)

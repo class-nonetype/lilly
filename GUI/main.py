@@ -16,6 +16,7 @@ from application import Lilly
 
 
 
+
 global struct
 global logger
 
@@ -109,8 +110,10 @@ logger.info('Logger instanciado.')
 
 
 
-qApp = QtWidgets.QApplication(sys.argv)
 
-Lilly(logger, struct).execute()
+if __name__ == '__main__':
 
-sys.exit(qApp.exec_())
+    lilly = Lilly(logger, struct)
+    
+    
+    sys.exit(lilly.execute())

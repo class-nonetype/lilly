@@ -1,7 +1,4 @@
-
-
-
-
+# -*- coding: utf-8 -*-
 
 
 from app.views.view import View
@@ -14,6 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 import pandas as pd
 import json
+import sys
 
 
 class Controller(object):
@@ -23,16 +21,43 @@ class Controller(object):
     def __init__(self, logger : logging.Logger):
         super(Controller, self).__init__()
         
+        self.Application = QtWidgets.QApplication(sys.argv)
+        
         self.logger = logger
 
         
-        self.View = View(self, self.logger)
-        self.Model = Model(self, self.logger)
+        self.__View = View(self, self.logger)
+
+        self.__Model = Model(self, self.logger)
+        
+        
+        
+        
+        
+
+
+
+
+    def main(self):
+        self.get_main_view()
+        
+        
+        return self.Application.exec_()
     
+    
+    
+    def set_struct(self, struct):
+        self.__Model.set_struct(struct)
+
+
+
     
     def get_main_view(self):
         try:
-            return self.View.get_main()
+            self.__View.get_main()
+
+            self.__View.MainView.treeViewSystem.setModel(self.__Model.FileSystemModel)
+
 
         except Exception as exception:
             
@@ -41,8 +66,8 @@ class Controller(object):
 
     def get_receiver_view(self, title : str, function):
         try:
-            self.View.get_receiver(title)
-            self.View.ReceiverView.pushButtonConfirm.clicked.connect(function)
+            self.__View.get_receiver(title)
+            self.__View.ReceiverView.pushButtonConfirm.clicked.connect(function)
 
         except Exception as exception:
             
@@ -52,8 +77,8 @@ class Controller(object):
 
     def get_editor_view(self, content, function):
         try:
-            self.View.get_editor(content)
-            self.View.EditorView.pushButtonSaveJson.clicked.connect(function)
+            self.__View.get_editor(content)
+            self.__View.EditorView.pushButtonSaveJson.clicked.connect(function)
 
         except Exception as exception:
             
@@ -121,10 +146,10 @@ class Controller(object):
     def system_file_browser(self):
         
         try:
-            header = self.View.MainView.treeViewSystem.header()
+            header = self.__View.MainView.treeViewSystem.header()
             header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
             
-            self.View.MainView.treeViewSystem.doubleClicked.connect(self.execute_file_system_file_browser)
+            self.__View.MainView.treeViewSystem.doubleClicked.connect(self.execute_file_system_file_browser)
 
 
         except Exception as exception:
@@ -136,7 +161,7 @@ class Controller(object):
 
     def execute_file_system_file_browser(self, index):
         try:
-            self.View.MainView.lineEditSelectedFile.setText(self.Model.FileSystemModel.filePath(index))
+            self.__View.MainView.lineEditSelectedFile.setText(self.__Model.FileSystemModel.filePath(index))
             
             self.execute_selected_file()
 
@@ -153,32 +178,32 @@ class Controller(object):
     def execute_selected_file(self):
         
         try:
-            file_extension = str(self.View.MainView.lineEditSelectedFile.text()).split('.')[-1]
+            file_extension = str(self.__View.MainView.lineEditSelectedFile.text()).split('.')[-1]
             
             if file_extension == 'json':
                 
-                with open(self.View.MainView.lineEditSelectedFile.text(), 'r') as json_file:
+                with open(self.__View.MainView.lineEditSelectedFile.text(), 'r') as json_file:
                     content = json_file.read()
                     
                 data = json.loads(fr'{content}')
                 
-                self.View.MainView.treeViewRequestData.setModel(self.Model.JsonModel)
-                self.Model.JsonModel.load(data)
-                self.Model.JsonModel.clear()
-                self.Model.JsonModel.load(data)
+                self.__View.MainView.treeViewRequestData.setModel(self.__Model.JsonModel)
+                self.__Model.JsonModel.load(data)
+                self.__Model.JsonModel.clear()
+                self.__Model.JsonModel.load(data)
                 
                 assert (
-                    json.dumps(self.Model.JsonModel.json(), sort_keys=True) ==
+                    json.dumps(self.__Model.JsonModel.json(), sort_keys=True) ==
                     json.dumps(data, sort_keys=True)
                 )
 
-                self.View.ReceiverView.destroy()
+                self.__View.ReceiverView.destroy()
                 
                 
                 global data_
                 data_ = json.dumps(data, indent=4, sort_keys=True)
                 
-                self.View.MainView.pushButtonOpenEditor.clicked.connect(lambda : self.get_editor_view(data_, self.save_requested_data))
+                self.__View.MainView.pushButtonOpenEditor.clicked.connect(lambda : self.get_editor_view(data_, self.save_requested_data))
 
 
 
@@ -194,12 +219,12 @@ class Controller(object):
     def select_file(self):
         try:
             selected_file = QtWidgets.QFileDialog.getOpenFileName(
-                self.View.MainView,
+                self.__View.MainView,
                 'Selecciona el archivo',
                 '/',
                 'Todos los archivos (*);;Archivo JSON (*.json)')
             
-            self.View.MainView.lineEditSelectedFile.setText(selected_file[0])
+            self.__View.MainView.lineEditSelectedFile.setText(selected_file[0])
 
 
         except Exception as exception:
@@ -215,11 +240,11 @@ class Controller(object):
     def select_directory(self):
         try:
             selected_directory = QtWidgets.QFileDialog.getExistingDirectory(
-                self.View.MainView,
+                self.__View.MainView,
                 'Selecciona el directorio',
                 '/'
             )
-            self.View.MainView.lineEditSelectedFile.setText(selected_directory)
+            self.__View.MainView.lineEditSelectedFile.setText(selected_directory)
             
             
             path = []
@@ -233,7 +258,7 @@ class Controller(object):
                         if os.name == 'nt':
                             
                             path_found_file = root + '\\' + file
-                            path_found_file = self.Model.DataModel.convert_path_to_windows(path_found_file)
+                            path_found_file = self.__Model.DataModel.convert_path_to_windows(path_found_file)
                         
                         else:
                             path_found_file = root + '/' + file
@@ -243,7 +268,7 @@ class Controller(object):
                         
                         
             model = QtGui.QStandardItemModel()
-            self.View.MainView.listViewFile.setModel(model)
+            self.__View.MainView.listViewFile.setModel(model)
 
             for file in path:
                 item = QtGui.QStandardItem(file)
@@ -260,11 +285,11 @@ class Controller(object):
     def get_log(self):
         try:
             model = QtGui.QStandardItemModel()
-            self.View.MainView.listViewLog.setModel(model)
+            self.__View.MainView.listViewLog.setModel(model)
             
             exceptions = []
             
-            with open(self.Model.struct['app']['log']['file'], 'r') as log_file:
+            with open(self.__Model.struct['app']['log']['file'], 'r') as log_file:
                 exceptions.append(log_file.read().replace('\n', '" ,"'))
             log_file.close()
             
@@ -282,12 +307,12 @@ class Controller(object):
             return self.logger.critical(exception)
 
         finally:
-            return self.View.MainView.stackedWidget.setCurrentWidget(self.View.MainView.settingsWidget)
+            return self.__View.MainView.stackedWidget.setCurrentWidget(self.__View.MainView.settingsWidget)
 
     def swipe_sidebar(self):
         try:
             if True:
-                width = self.View.MainView.frameSidebar.width()
+                width = self.__View.MainView.frameSidebar.width()
                 normal = 44
 
                 if width == 44:
@@ -295,7 +320,7 @@ class Controller(object):
                 else:
                     extend = normal
 
-                self.animation = QtCore.QPropertyAnimation(self.View.MainView.frameSidebar, b'minimumWidth')
+                self.animation = QtCore.QPropertyAnimation(self.__View.MainView.frameSidebar, b'minimumWidth')
                 self.animation.setDuration(350)
                 self.animation.setStartValue(width)
                 self.animation.setEndValue(extend)
@@ -315,10 +340,10 @@ class Controller(object):
     def convert_json_to_xlsx(self):
 
         try:
-            xlsx_file_path = QtWidgets.QFileDialog.getSaveFileName(self.View.MainView, 'Guardar el archivo', './', 'Libro de Excel (*.xlsx)')[0]
+            xlsx_file_path = QtWidgets.QFileDialog.getSaveFileName(self.__View.MainView, 'Guardar el archivo', './', 'Libro de Excel (*.xlsx)')[0]
             
-            self.Model.DataModel.convert_json_to_xlsx(
-                json_file_path = self.View.MainView.lineEditSelectedFile.text(),
+            self.__Model.DataModel.convert_json_to_xlsx(
+                json_file_path = self.__View.MainView.lineEditSelectedFile.text(),
                 xlsx_file_path = xlsx_file_path
             )
 
@@ -350,30 +375,30 @@ class Controller(object):
         
     def request_data(self):
         try:
-            self.Model.DataModel.set_url(self.View.ReceiverView.lineEditData.text())
+            self.__Model.DataModel.set_url(self.__View.ReceiverView.lineEditData.text())
                 
-            data = self.Model.DataModel.get_data()
+            data = self.__Model.DataModel.get_data()
             
             
             if data is not None:
                 
-                self.View.MainView.treeViewRequestData.setModel(self.Model.JsonModel)
-                self.Model.JsonModel.load(data)
-                self.Model.JsonModel.clear()
-                self.Model.JsonModel.load(data)
+                self.__View.MainView.treeViewRequestData.setModel(self.__Model.JsonModel)
+                self.__Model.JsonModel.load(data)
+                self.__Model.JsonModel.clear()
+                self.__Model.JsonModel.load(data)
                 
                 assert (
-                    json.dumps(self.Model.JsonModel.json(), sort_keys=True) ==
+                    json.dumps(self.__Model.JsonModel.json(), sort_keys=True) ==
                     json.dumps(data, sort_keys=True)
                 )
 
-                self.View.ReceiverView.destroy()
+                self.__View.ReceiverView.destroy()
                 
                 
                 global data_
                 data_ = json.dumps(data, indent=4, sort_keys=True)
                 
-                self.View.MainView.pushButtonOpenEditor.clicked.connect(lambda : self.get_editor_view(data_, self.save_requested_data))
+                self.__View.MainView.pushButtonOpenEditor.clicked.connect(lambda : self.get_editor_view(data_, self.save_requested_data))
             
 
 
@@ -390,16 +415,16 @@ class Controller(object):
     def save_requested_data(self):
         
         try:
-            file = QtWidgets.QFileDialog.getSaveFileName(self.View.MainView, 'Guardar el archivo', './', 'Archivo JSON (*.json)')[0]
+            file = QtWidgets.QFileDialog.getSaveFileName(self.__View.MainView, 'Guardar el archivo', './', 'Archivo JSON (*.json)')[0]
 
             
             try:
-                return self.Model.DataModel.save_data(file, self.View.EditorView.textEditJson.toPlainText())
+                return self.__Model.DataModel.save_data(file, self.__View.EditorView.textEditJson.toPlainText())
             except Exception as exception:
                 self.logger.critical(exception)
                 
                 try:
-                    return self.Model.DataModel.save_data(file, data_)
+                    return self.__Model.DataModel.save_data(file, data_)
                 except Exception as exception:
                     self.logger.critical(exception)
 
