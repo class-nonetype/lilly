@@ -6,7 +6,6 @@ import os
 
 
 execution_path = os.path.dirname(os.path.abspath(__file__))
-output_path = os.path.join(execution_path, "output")
 
 
 class DataModel(object):
@@ -42,17 +41,19 @@ class DataModel(object):
                 return None
     
     @classmethod
-    def save_data(self, file):
+    def save_data(self, file, data):
         
+        with open(file, 'w') as json_file:
+            json_file.write(data)
+        json_file.close()
+
+
+    @classmethod
+    def convert_path_to_windows(self, path : str):
+        path = path.replace('/', '\\')
         
-        if not os.path.exists(output_path):
-            os.mkdir(output_path)
-        
-        json_file = os.path.join(output_path, file)
-        
-        with open(json_file, 'w') as output_file:
-            output_file.write(json.dumps(self.get_data(), indent=4))
-        output_file.close()
+        if os.path.exists(path):
+            return path
 
         
 

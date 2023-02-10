@@ -8,17 +8,6 @@ from PyQt5 import QtWidgets
 from app.controllers.controller import Controller
 
 
-'''
-
-API DE PRUEBA
-
-https://jsonplaceholder.typicode.com/users
-
-
-http://127.0.0.1:8000/api
-
-'''
-
 
 execution_path =\
     os.path.dirname(os.path.abspath(__file__))
@@ -71,7 +60,7 @@ qApp = QtWidgets.QApplication(sys.argv)
 
 controller = Controller()
 
-controller.get_menu_view()
+controller.get_main_view()
 
 
 sys.exit(qApp.exec_())

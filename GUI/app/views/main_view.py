@@ -183,7 +183,22 @@ class MainView(QtWidgets.QMainWindow):
             QtWidgets.qApp.quit()
 
         elif event.key() == QtCore.Qt.Key_F1:
-            pass
+            self.stackedWidget.setCurrentWidget(self.homeWidget)
+
+        elif event.key() == QtCore.Qt.Key_F2:
+            self.stackedWidget.setCurrentWidget(self.APIWidget)
+
+        elif event.key() == QtCore.Qt.Key_F3:
+            self.stackedWidget.setCurrentWidget(self.workspaceWidget)
+
+        elif event.key() == QtCore.Qt.Key_F4:
+            self.stackedWidget.setCurrentWidget(self.settingsWidget)
+
+        elif event.key() == QtCore.Qt.Key_F7:
+            self.radioButtonLightMode.setChecked(True)
+
+        elif event.key() == QtCore.Qt.Key_F8:
+            self.radioButtonDarkMode.setChecked(True)
 
         else:
             super().keyPressEvent(event)
@@ -255,8 +270,8 @@ class MainView(QtWidgets.QMainWindow):
                                                  "}")
         self.pushButtonCloseWindow.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(
-            "app/resources/img/icons/24x24/cil-x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-x.png"),
+                       QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButtonCloseWindow.setIcon(icon)
         self.pushButtonCloseWindow.setIconSize(QtCore.QSize(24, 24))
         self.pushButtonCloseWindow.setObjectName("pushButtonCloseWindow")
@@ -274,8 +289,8 @@ class MainView(QtWidgets.QMainWindow):
                                                     "}")
         self.pushButtonMinimizeWindow.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(
-            "app/resources/img/icons/24x24/cil-window-minimize.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-window-minimize.png"),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButtonMinimizeWindow.setIcon(icon1)
         self.pushButtonMinimizeWindow.setIconSize(QtCore.QSize(42, 42))
         self.pushButtonMinimizeWindow.setObjectName("pushButtonMinimizeWindow")
@@ -293,8 +308,8 @@ class MainView(QtWidgets.QMainWindow):
                                                    "}")
         self.pushButtonRestoreWindow.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(
-            "app/resources/img/icons/24x24/cil-window-maximize.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-window-maximize.png"),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButtonRestoreWindow.setIcon(icon2)
         self.pushButtonRestoreWindow.setIconSize(QtCore.QSize(24, 24))
         self.pushButtonRestoreWindow.setObjectName("pushButtonRestoreWindow")
@@ -350,7 +365,7 @@ class MainView(QtWidgets.QMainWindow):
         self.labelHomeTitle.setMaximumSize(QtCore.QSize(16777215, 42))
         self.labelHomeTitle.setStyleSheet("QLabel{\n"
                                           "    background-color: #222222;\n"
-                                          "    font : 77 17pt \"Microsoft JhengHei UI\" ;\n"
+                                          "    font : 22 17pt \"Microsoft JhengHei UI\" ;\n"
                                           "    color : #FFFFFF;\n"
                                           "    border-radius : 0px;\n"
                                           "    text-align : left;\n"
@@ -397,86 +412,6 @@ class MainView(QtWidgets.QMainWindow):
         self.gridLayout_10.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_10.setSpacing(0)
         self.gridLayout_10.setObjectName("gridLayout_10")
-        self.frameDataSearcher = QtWidgets.QFrame(parent=self.frameAPIContent)
-        self.frameDataSearcher.setMinimumSize(QtCore.QSize(50, 80))
-        self.frameDataSearcher.setMaximumSize(QtCore.QSize(16777215, 80))
-        self.frameDataSearcher.setStyleSheet("QFrame {\n"
-                                             "    background-color : #121212;\n"
-                                             "}")
-        self.frameDataSearcher.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.frameDataSearcher.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
-        self.frameDataSearcher.setLineWidth(0)
-        self.frameDataSearcher.setObjectName("frameDataSearcher")
-        self.gridLayout_11 = QtWidgets.QGridLayout(self.frameDataSearcher)
-        self.gridLayout_11.setContentsMargins(0, 0, 9, 9)
-        self.gridLayout_11.setSpacing(9)
-        self.gridLayout_11.setObjectName("gridLayout_11")
-        self.pushButtonSearch = QtWidgets.QPushButton(
-            parent=self.frameDataSearcher)
-        self.pushButtonSearch.setMinimumSize(QtCore.QSize(170, 30))
-        self.pushButtonSearch.setMaximumSize(QtCore.QSize(70, 30))
-        self.pushButtonSearch.setStyleSheet("QPushButton{\n"
-                                            "    background-color: #D37242;\n"
-                                            "\n"
-                                            "    border-top-left-radius: 14px;\n"
-                                            "    border-bottom-left-radius: 14px;\n"
-                                            "    border-top-right-radius: 14px;\n"
-                                            "    border-bottom-right-radius: 14px;\n"
-                                            "\n"
-                                            "    font : 75 10pt \"Microsoft JhengHei UI\" bold;\n"
-                                            "    color: #FFFFFF;\n"
-                                            "    padding : 10px;\n"
-                                            "\n"
-                                            "    text-align : left;\n"
-                                            "}\n"
-                                            "\n"
-                                            "QPushButton:hover{\n"
-                                            "    background-color: #BB673D;\n"
-                                            "    border-top-left-radius: 14px;    \n"
-                                            "    border-bottom-left-radius: 14px;\n"
-                                            "    border-top-right-radius: 14px;\n"
-                                            "    border-bottom-right-radius: 14px;\n"
-                                            "\n"
-                                            "    font : 75 10pt \"Microsoft JhengHei UI\" bold;\n"
-                                            "    color: #FFFFFF;\n"
-                                            "    text-align : left;\n"
-                                            "\n"
-                                            "}")
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(
-            "app/resources/img/icons/24x24/cil-arrow-circle-right.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonSearch.setIcon(icon3)
-        self.pushButtonSearch.setIconSize(QtCore.QSize(24, 24))
-        self.pushButtonSearch.setObjectName("pushButtonSearch")
-        self.gridLayout_11.addWidget(self.pushButtonSearch, 1, 2, 1, 1)
-        self.lineEditSearcher = QtWidgets.QLineEdit(
-            parent=self.frameDataSearcher)
-        self.lineEditSearcher.setMinimumSize(QtCore.QSize(0, 0))
-        self.lineEditSearcher.setMaximumSize(QtCore.QSize(16777215, 16777214))
-        self.lineEditSearcher.setStyleSheet("QLineEdit {\n"
-                                            "    font: 25 18pt \"Microsoft YaHei UI\";\n"
-                                            "    background-color : #222222;\n"
-                                            "    color : #FFFFFF;\n"
-                                            "    border : 2px;\n"
-                                            "    border-radius : 15px;\n"
-                                            "}\n"
-                                            "\n"
-                                            "QLineEdit::hover{\n"
-                                            "    background-color: #121212;\n"
-                                            "    border : 1px solid #5F3E77;\n"
-                                            "}")
-        self.lineEditSearcher.setObjectName("lineEditSearcher")
-        self.gridLayout_11.addWidget(self.lineEditSearcher, 1, 1, 1, 1)
-        spacerItem5 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout_11.addItem(spacerItem5, 1, 0, 1, 1)
-        spacerItem6 = QtWidgets.QSpacerItem(
-            20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.gridLayout_11.addItem(spacerItem6, 2, 1, 1, 2)
-        spacerItem7 = QtWidgets.QSpacerItem(
-            20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.gridLayout_11.addItem(spacerItem7, 0, 1, 1, 2)
-        self.gridLayout_10.addWidget(self.frameDataSearcher, 1, 0, 1, 2)
         self.labelApiTitle = QtWidgets.QLabel(parent=self.frameAPIContent)
         self.labelApiTitle.setMinimumSize(QtCore.QSize(0, 42))
         self.labelApiTitle.setMaximumSize(QtCore.QSize(16777215, 42))
@@ -484,7 +419,7 @@ class MainView(QtWidgets.QMainWindow):
         self.labelApiTitle.setBaseSize(QtCore.QSize(0, 50))
         self.labelApiTitle.setStyleSheet("QLabel{\n"
                                          "    background-color: #222222;\n"
-                                         "    font : 77 17pt \"Microsoft JhengHei UI\" ;\n"
+                                         "    font : 22 17pt \"Microsoft JhengHei UI\" ;\n"
                                          "    color : #FFFFFF;\n"
                                          "    border-radius : 0px;\n"
                                          "    text-align : left;\n"
@@ -536,116 +471,35 @@ class MainView(QtWidgets.QMainWindow):
         self.gridLayout_16.setContentsMargins(-1, -1, 9, 9)
         self.gridLayout_16.setSpacing(9)
         self.gridLayout_16.setObjectName("gridLayout_16")
-        self.tableWidgetRequestData = QtWidgets.QTableWidget(
+        self.pushButtonOpenEditor = QtWidgets.QPushButton(
             parent=self.frameAPIRequestContent)
-        self.tableWidgetRequestData.setStyleSheet("QTableWidget {\n"
-                                                  "    background-color : #222222;\n"
-                                                  "    font : 75 13pt \"Microsoft JhengHei UI\" bold;\n"
-                                                  "    color : #D37242;\n"
-                                                  "    border-radius : 0px;\n"
-                                                  "    padding-left : 50px;\n"
-                                                  "    text-align : left;\n"
-                                                  "}\n"
-                                                  "\n"
-                                                  "QHeaderView::section {\n"
-                                                  "    background-color : #6178B2;\n"
-                                                  "    font : 75 13pt \"Microsoft JhengHei UI\" bold;\n"
-                                                  "    color : #FFFFFF;\n"
-                                                  "    border-radius : 0px;\n"
-                                                  "    text-align : left;\n"
-                                                  "}")
-        self.tableWidgetRequestData.setObjectName("tableWidgetRequestData")
-        self.tableWidgetRequestData.setColumnCount(0)
-        self.tableWidgetRequestData.setRowCount(0)
-        self.gridLayout_16.addWidget(self.tableWidgetRequestData, 13, 0, 1, 3)
-        self.listViewRequest = QtWidgets.QListView(
-            parent=self.frameAPIRequestContent)
-        self.listViewRequest.setMaximumSize(QtCore.QSize(500, 16777215))
-        self.listViewRequest.setStyleSheet("QListView {\n"
-                                           "    background-color : #222222;\n"
-                                           "    font : 75 13pt \"Microsoft JhengHei UI\" bold;\n"
-                                           "    color : #D37242;\n"
-                                           "    border-radius : 0px;\n"
-                                           "    padding-left : 50px;\n"
-                                           "    text-align : left;\n"
-                                           "}\n"
-                                           "\n"
-                                           "QListView::hover {\n"
-                                           "    color : #6B5876;\n"
-                                           "}")
-        self.listViewRequest.setObjectName("listViewRequest")
-        self.gridLayout_16.addWidget(self.listViewRequest, 10, 0, 3, 1)
-        spacerItem8 = QtWidgets.QSpacerItem(
-            20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
-        self.gridLayout_16.addItem(spacerItem8, 4, 0, 1, 3)
-        spacerItem9 = QtWidgets.QSpacerItem(
-            20, 10, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
-        self.gridLayout_16.addItem(spacerItem9, 1, 0, 1, 3)
-        self.pushButtonRequestData = QtWidgets.QPushButton(
-            parent=self.frameAPIRequestContent)
-        self.pushButtonRequestData.setMinimumSize(QtCore.QSize(300, 42))
-        self.pushButtonRequestData.setMaximumSize(QtCore.QSize(500, 16777215))
-        self.pushButtonRequestData.setStyleSheet("QPushButton{\n"
-                                                 "    background-color : #5F3E77;\n"
-                                                 "    font : 75 13pt \"Microsoft JhengHei UI\" bold;\n"
-                                                 "    color : #FFFFFF;\n"
-                                                 "\n"
-                                                 "    border : 2px;\n"
-                                                 "    border-radius : 20px;\n"
-                                                 "\n"
-                                                 "    text-align : left;\n"
-                                                 "    padding: 10px;\n"
-                                                 "}\n"
-                                                 "\n"
-                                                 "QPushButton:hover{\n"
-                                                 "\n"
-                                                 "    background-color: #61364F;\n"
-                                                 "    color : #FFFFFF;\n"
-                                                 "}\n"
-                                                 "")
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(
-            "app/resources/img/icons/24x24/cil-view-column.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonRequestData.setIcon(icon4)
-        self.pushButtonRequestData.setIconSize(QtCore.QSize(24, 24))
-        self.pushButtonRequestData.setObjectName("pushButtonRequestData")
-        self.gridLayout_16.addWidget(self.pushButtonRequestData, 10, 1, 1, 2)
-        self.pushButtonExportRequestedData = QtWidgets.QPushButton(
-            parent=self.frameAPIRequestContent)
-        self.pushButtonExportRequestedData.setMinimumSize(
-            QtCore.QSize(300, 42))
-        self.pushButtonExportRequestedData.setMaximumSize(
-            QtCore.QSize(500, 16777215))
-        self.pushButtonExportRequestedData.setCursor(
-            QtGui.QCursor(QtCore.Qt.CursorShape.ArrowCursor))
-        self.pushButtonExportRequestedData.setStyleSheet("QPushButton{\n"
-                                                         "    background-color : #5F3E77;\n"
-                                                         "    font : 75 13pt \"Microsoft JhengHei UI\" bold;\n"
-                                                         "    color : #FFFFFF;\n"
-                                                         "\n"
-                                                         "    border : 2px;\n"
-                                                         "    border-radius : 20px;\n"
-                                                         "\n"
-                                                         "    text-align : left;\n"
-                                                         "    padding: 10px;\n"
-                                                         "}\n"
-                                                         "\n"
-                                                         "QPushButton:hover{\n"
-                                                         "\n"
-                                                         "    background-color: #61364F;\n"
-                                                         "    color : #FFFFFF;\n"
-                                                         "}\n"
-                                                         "")
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(
-            "app/resources/img/icons/24x24/cil-copy.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonExportRequestedData.setIcon(icon5)
-        self.pushButtonExportRequestedData.setIconSize(QtCore.QSize(24, 24))
-        self.pushButtonExportRequestedData.setFlat(True)
-        self.pushButtonExportRequestedData.setObjectName(
-            "pushButtonExportRequestedData")
-        self.gridLayout_16.addWidget(
-            self.pushButtonExportRequestedData, 11, 1, 1, 2)
+        self.pushButtonOpenEditor.setMinimumSize(QtCore.QSize(300, 42))
+        self.pushButtonOpenEditor.setMaximumSize(QtCore.QSize(500, 16777215))
+        self.pushButtonOpenEditor.setStyleSheet("QPushButton{\n"
+                                      "    background-color : #5F3E77;\n"
+                                      "    font : 75 13pt \"Microsoft JhengHei UI\" bold;\n"
+                                      "    color : #FFFFFF;\n"
+                                      "\n"
+                                      "    border : 2px;\n"
+                                      "    border-radius : 20px;\n"
+                                      "\n"
+                                      "    text-align : left;\n"
+                                      "    padding: 10px;\n"
+                                      "}\n"
+                                      "\n"
+                                      "QPushButton:hover{\n"
+                                      "\n"
+                                      "    background-color: #61364F;\n"
+                                      "    color : #FFFFFF;\n"
+                                      "}\n"
+                                      "")
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-pencil.png"),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButtonOpenEditor.setIcon(icon3)
+        self.pushButtonOpenEditor.setIconSize(QtCore.QSize(24, 24))
+        self.pushButtonOpenEditor.setObjectName("pushButtonOpenEditor")
+        self.gridLayout_16.addWidget(self.pushButtonOpenEditor, 4, 0, 1, 1)
         self.pushButtonSaveRequestedData = QtWidgets.QPushButton(
             parent=self.frameAPIRequestContent)
         self.pushButtonSaveRequestedData.setMinimumSize(QtCore.QSize(300, 42))
@@ -670,71 +524,296 @@ class MainView(QtWidgets.QMainWindow):
                                                        "    color: #FFFFFF;\n"
                                                        "\n"
                                                        "}")
-        icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(
-            "app/resources/img/icons/24x24/cil-save.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonSaveRequestedData.setIcon(icon6)
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-save.png"),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButtonSaveRequestedData.setIcon(icon4)
         self.pushButtonSaveRequestedData.setIconSize(QtCore.QSize(24, 24))
         self.pushButtonSaveRequestedData.setObjectName(
             "pushButtonSaveRequestedData")
         self.gridLayout_16.addWidget(
-            self.pushButtonSaveRequestedData, 12, 1, 1, 2)
-        self.labelStatusRequestedData = QtWidgets.QLabel(
+            self.pushButtonSaveRequestedData, 5, 0, 1, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(
+            20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
+        self.gridLayout_16.addItem(spacerItem5, 2, 0, 1, 3)
+        self.treeViewRequestData = QtWidgets.QTreeView(
             parent=self.frameAPIRequestContent)
-        self.labelStatusRequestedData.setStyleSheet("QLabel{\n"
-                                                    "    background-color: #222222;\n"
-                                                    "    font : 77 17pt \"Microsoft JhengHei UI\" ;\n"
-                                                    "    color : #FFFFFF;\n"
-                                                    "    border-radius : 0px;\n"
-                                                    "    text-align : left;\n"
-                                                    "    padding: 10px;\n"
-                                                    "}\n"
-                                                    "")
-        self.labelStatusRequestedData.setText("")
-        self.labelStatusRequestedData.setObjectName("labelStatusRequestedData")
-        self.gridLayout_16.addWidget(self.labelStatusRequestedData, 2, 0, 1, 3)
+        self.treeViewRequestData.setStyleSheet("QTreeView {\n"
+                                               "    background-color : #222222;\n"
+                                               "    font : 75 13pt \"Microsoft JhengHei UI\" bold;\n"
+                                               "    color : #D37242;\n"
+                                               "    border-radius : 0px;\n"
+                                               "    padding-left : 50px;\n"
+                                               "    text-align : left;\n"
+                                               "}\n"
+                                               "\n"
+                                               "QHeaderView::section {\n"
+                                               "    background-color : #6178B2;\n"
+                                               "    font : 75 13pt \"Microsoft JhengHei UI\" bold;\n"
+                                               "    color : #FFFFFF;\n"
+                                               "    border-radius : 0px;\n"
+                                               "    text-align : left;\n"
+                                               "}")
+        self.treeViewRequestData.setObjectName("treeViewRequestData")
+        self.gridLayout_16.addWidget(self.treeViewRequestData, 11, 0, 1, 3)
+        self.pushButtonRequestData = QtWidgets.QPushButton(
+            parent=self.frameAPIRequestContent)
+        self.pushButtonRequestData.setMinimumSize(QtCore.QSize(300, 42))
+        self.pushButtonRequestData.setMaximumSize(QtCore.QSize(500, 16777215))
+        self.pushButtonRequestData.setStyleSheet("QPushButton{\n"
+                                                 "    background-color : #5F3E77;\n"
+                                                 "    font : 75 13pt \"Microsoft JhengHei UI\" bold;\n"
+                                                 "    color : #FFFFFF;\n"
+                                                 "\n"
+                                                 "    border : 2px;\n"
+                                                 "    border-radius : 20px;\n"
+                                                 "\n"
+                                                 "    text-align : left;\n"
+                                                 "    padding: 10px;\n"
+                                                 "}\n"
+                                                 "\n"
+                                                 "QPushButton:hover{\n"
+                                                 "\n"
+                                                 "    background-color: #61364F;\n"
+                                                 "    color : #FFFFFF;\n"
+                                                 "}\n"
+                                                 "")
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-view-column.png"),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButtonRequestData.setIcon(icon5)
+        self.pushButtonRequestData.setIconSize(QtCore.QSize(24, 24))
+        self.pushButtonRequestData.setObjectName("pushButtonRequestData")
+        self.gridLayout_16.addWidget(self.pushButtonRequestData, 3, 0, 1, 1)
+        spacerItem6 = QtWidgets.QSpacerItem(
+            20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
+        self.gridLayout_16.addItem(spacerItem6, 6, 0, 1, 3)
         self.gridLayout_13.addWidget(self.frameAPIRequestContent, 4, 0, 1, 2)
         self.gridLayout_12.addWidget(self.frameAPIRequest, 0, 0, 1, 1)
         self.gridLayout_10.addWidget(self.frameAPIView, 2, 0, 1, 2)
+        self.frameDataSearcher = QtWidgets.QFrame(parent=self.frameAPIContent)
+        self.frameDataSearcher.setMinimumSize(QtCore.QSize(50, 80))
+        self.frameDataSearcher.setMaximumSize(QtCore.QSize(16777215, 80))
+        self.frameDataSearcher.setStyleSheet("QFrame {\n"
+                                             "    background-color : #121212;\n"
+                                             "}")
+        self.frameDataSearcher.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.frameDataSearcher.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
+        self.frameDataSearcher.setLineWidth(0)
+        self.frameDataSearcher.setObjectName("frameDataSearcher")
+        self.gridLayout_11 = QtWidgets.QGridLayout(self.frameDataSearcher)
+        self.gridLayout_11.setContentsMargins(0, 0, 9, 9)
+        self.gridLayout_11.setSpacing(9)
+        self.gridLayout_11.setObjectName("gridLayout_11")
+        self.pushButtonSearch = QtWidgets.QPushButton(
+            parent=self.frameDataSearcher)
+        self.pushButtonSearch.setMinimumSize(QtCore.QSize(170, 30))
+        self.pushButtonSearch.setMaximumSize(QtCore.QSize(70, 30))
+        self.pushButtonSearch.setStyleSheet("QPushButton{\n"
+                                            "    background-color: #D37242;\n"
+                                            "\n"
+                                            "    border-top-left-radius: 14px;\n"
+                                            "    border-bottom-left-radius: 14px;\n"
+                                            "    border-top-right-radius: 14px;\n"
+                                            "    border-bottom-right-radius: 14px;\n"
+                                            "\n"
+                                            "    font : 75 10pt \"Microsoft JhengHei UI\" bold;\n"
+                                            "    color: #FFFFFF;\n"
+                                            "    padding : 10px;\n"
+                                            "\n"
+                                            "    text-align : left;\n"
+                                            "}\n"
+                                            "\n"
+                                            "QPushButton:hover{\n"
+                                            "    background-color: #BB673D;\n"
+                                            "    border-top-left-radius: 14px;    \n"
+                                            "    border-bottom-left-radius: 14px;\n"
+                                            "    border-top-right-radius: 14px;\n"
+                                            "    border-bottom-right-radius: 14px;\n"
+                                            "\n"
+                                            "    font : 75 10pt \"Microsoft JhengHei UI\" bold;\n"
+                                            "    color: #FFFFFF;\n"
+                                            "    text-align : left;\n"
+                                            "\n"
+                                            "}")
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-arrow-circle-right.png"),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButtonSearch.setIcon(icon6)
+        self.pushButtonSearch.setIconSize(QtCore.QSize(24, 24))
+        self.pushButtonSearch.setObjectName("pushButtonSearch")
+        self.gridLayout_11.addWidget(self.pushButtonSearch, 1, 2, 1, 1)
+        self.lineEditSearcher = QtWidgets.QLineEdit(
+            parent=self.frameDataSearcher)
+        self.lineEditSearcher.setMinimumSize(QtCore.QSize(0, 0))
+        self.lineEditSearcher.setMaximumSize(QtCore.QSize(16777215, 16777214))
+        self.lineEditSearcher.setStyleSheet("QLineEdit {\n"
+                                            "    font: 25 12pt \"Microsoft YaHei UI\";\n"
+                                            "    background-color : #222222;\n"
+                                            "    color : #FFFFFF;\n"
+                                            "    border : 2px;\n"
+                                            "    border-radius : 15px;\n"
+                                            "}\n"
+                                            "\n"
+                                            "QLineEdit::hover{\n"
+                                            "    background-color: #121212;\n"
+                                            "    border : 1px solid #5F3E77;\n"
+                                            "}")
+        self.lineEditSearcher.setObjectName("lineEditSearcher")
+        self.gridLayout_11.addWidget(self.lineEditSearcher, 1, 1, 1, 1)
+        spacerItem7 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout_11.addItem(spacerItem7, 1, 0, 1, 1)
+        spacerItem8 = QtWidgets.QSpacerItem(
+            20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.gridLayout_11.addItem(spacerItem8, 2, 1, 1, 2)
+        spacerItem9 = QtWidgets.QSpacerItem(
+            20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.gridLayout_11.addItem(spacerItem9, 0, 1, 1, 2)
+        self.gridLayout_10.addWidget(self.frameDataSearcher, 1, 0, 1, 2)
         self.gridLayout_15.addWidget(self.frameAPIContent, 0, 0, 1, 1)
         self.gridLayout_7.addWidget(self.frameAPIContainer, 0, 0, 1, 1)
         self.stackedWidget.addWidget(self.APIWidget)
         self.settingsWidget = QtWidgets.QWidget()
         self.settingsWidget.setObjectName("settingsWidget")
         self.gridLayout_19 = QtWidgets.QGridLayout(self.settingsWidget)
+        self.gridLayout_19.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_19.setSpacing(0)
         self.gridLayout_19.setObjectName("gridLayout_19")
         self.frameSettingsContainer = QtWidgets.QFrame(
             parent=self.settingsWidget)
+        self.frameSettingsContainer.setStyleSheet("QFrame {\n"
+                                                  "    background-color : #121212;\n"
+                                                  "}")
         self.frameSettingsContainer.setFrameShape(
-            QtWidgets.QFrame.Shape.StyledPanel)
+            QtWidgets.QFrame.Shape.NoFrame)
         self.frameSettingsContainer.setFrameShadow(
-            QtWidgets.QFrame.Shadow.Raised)
+            QtWidgets.QFrame.Shadow.Plain)
+        self.frameSettingsContainer.setLineWidth(0)
         self.frameSettingsContainer.setObjectName("frameSettingsContainer")
         self.gridLayout_20 = QtWidgets.QGridLayout(self.frameSettingsContainer)
+        self.gridLayout_20.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_20.setSpacing(0)
         self.gridLayout_20.setObjectName("gridLayout_20")
         self.frameSettingsContent = QtWidgets.QFrame(
             parent=self.frameSettingsContainer)
-        self.frameSettingsContent.setFrameShape(
-            QtWidgets.QFrame.Shape.StyledPanel)
-        self.frameSettingsContent.setFrameShadow(
-            QtWidgets.QFrame.Shadow.Raised)
+        self.frameSettingsContent.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.frameSettingsContent.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
+        self.frameSettingsContent.setLineWidth(0)
         self.frameSettingsContent.setObjectName("frameSettingsContent")
-        self.labeTitleMode = QtWidgets.QLabel(parent=self.frameSettingsContent)
-        self.labeTitleMode.setGeometry(QtCore.QRect(30, 130, 271, 31))
+        self.gridLayout_23 = QtWidgets.QGridLayout(self.frameSettingsContent)
+        self.gridLayout_23.setObjectName("gridLayout_23")
+        self.groupBoxMode = QtWidgets.QGroupBox(
+            parent=self.frameSettingsContent)
+        self.groupBoxMode.setStyleSheet("QGroupBox {\n"
+                                        "\n"
+                                        "    font: 76 13pt \"Microsoft JhengHei UI\";\n"
+                                        "    font-weight: bold;\n"
+                                        "    color: #D37242;\n"
+                                        "    \n"
+                                        "    border : 1px solid #5F3E77;\n"
+                                        "}\n"
+                                        "\n"
+                                        "")
+        self.groupBoxMode.setTitle("")
+        self.groupBoxMode.setFlat(True)
+        self.groupBoxMode.setObjectName("groupBoxMode")
+        self.gridLayout_22 = QtWidgets.QGridLayout(self.groupBoxMode)
+        self.gridLayout_22.setObjectName("gridLayout_22")
+        spacerItem10 = QtWidgets.QSpacerItem(
+            20, 20, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
+        self.gridLayout_22.addItem(spacerItem10, 1, 0, 1, 1)
+        self.radioButtonLightMode = QtWidgets.QRadioButton(
+            parent=self.groupBoxMode)
+        self.radioButtonLightMode.setStyleSheet("QRadioButton {\n"
+                                                "    font : 75 11pt \"Microsoft JhengHei UI\"  bold;\n"
+                                                "    color : #FFFFFF;\n"
+                                                "    border-radius : 0px;\n"
+                                                "}\n"
+                                                "\n"
+                                                "QRadioButton:hover {\n"
+                                                "    color : #3A609B;\n"
+                                                "    border-radius : 0px;\n"
+                                                "}\n"
+                                                "\n"
+                                                "QRadioButton::checked {\n"
+                                                "    color : #3A609B;\n"
+                                                "    border-radius : 0px;\n"
+                                                "}\n"
+                                                "\n"
+                                                "QRadioButton::indicator {\n"
+                                                "    color : #3A609B;\n"
+                                                "}\n"
+                                                "\n"
+                                                "QRadioButton::indicator:checked:pressed {\n"
+                                                "    color : #3A609B;\n"
+                                                "}")
+        self.radioButtonLightMode.setObjectName("radioButtonLightMode")
+        self.gridLayout_22.addWidget(self.radioButtonLightMode, 4, 0, 1, 1)
+        spacerItem11 = QtWidgets.QSpacerItem(
+            20, 20, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.gridLayout_22.addItem(spacerItem11, 5, 0, 1, 1)
+        self.labeTitleMode = QtWidgets.QLabel(parent=self.groupBoxMode)
         self.labeTitleMode.setStyleSheet("QLabel {\n"
                                          "    font: 25 14pt \"Microsoft YaHei UI Light\";\n"
                                          "    color : #4F6FA0;\n"
                                          "}")
         self.labeTitleMode.setObjectName("labeTitleMode")
+        self.gridLayout_22.addWidget(self.labeTitleMode, 0, 0, 1, 1)
         self.radioButtonDarkMode = QtWidgets.QRadioButton(
-            parent=self.frameSettingsContent)
-        self.radioButtonDarkMode.setGeometry(QtCore.QRect(180, 140, 82, 17))
+            parent=self.groupBoxMode)
+        self.radioButtonDarkMode.setStyleSheet("QRadioButton {\n"
+                                               "    font : 75 11pt \"Microsoft JhengHei UI\"  bold;\n"
+                                               "    color : #FFFFFF;\n"
+                                               "    border-radius : 0px;\n"
+                                               "}\n"
+                                               "\n"
+                                               "QRadioButton:hover {\n"
+                                               "    color : #3A609B;\n"
+                                               "    border-radius : 0px;\n"
+                                               "}\n"
+                                               "\n"
+                                               "QRadioButton::checked {\n"
+                                               "    color : #3A609B;\n"
+                                               "    border-radius : 0px;\n"
+                                               "}\n"
+                                               "\n"
+                                               "QRadioButton::indicator {\n"
+                                               "    color : #3A609B;\n"
+                                               "}\n"
+                                               "\n"
+                                               "QRadioButton::indicator:checked:pressed {\n"
+                                               "    color : #3A609B;\n"
+                                               "}")
+        self.radioButtonDarkMode.setChecked(True)
         self.radioButtonDarkMode.setObjectName("radioButtonDarkMode")
-        self.radioButtonLightMode = QtWidgets.QRadioButton(
-            parent=self.frameSettingsContent)
-        self.radioButtonLightMode.setGeometry(QtCore.QRect(180, 170, 82, 17))
-        self.radioButtonLightMode.setObjectName("radioButtonLightMode")
-        self.gridLayout_20.addWidget(self.frameSettingsContent, 0, 0, 1, 1)
+        self.gridLayout_22.addWidget(self.radioButtonDarkMode, 2, 0, 1, 1)
+        spacerItem12 = QtWidgets.QSpacerItem(
+            20, 10, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
+        self.gridLayout_22.addItem(spacerItem12, 3, 0, 1, 1)
+        self.gridLayout_23.addWidget(self.groupBoxMode, 2, 0, 1, 1)
+        spacerItem13 = QtWidgets.QSpacerItem(
+            20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.gridLayout_23.addItem(spacerItem13, 1, 0, 1, 1)
+        spacerItem14 = QtWidgets.QSpacerItem(
+            20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.gridLayout_23.addItem(spacerItem14, 3, 0, 1, 1)
+        self.gridLayout_20.addWidget(self.frameSettingsContent, 1, 0, 1, 1)
+        self.labelSettingsTitle = QtWidgets.QLabel(
+            parent=self.frameSettingsContainer)
+        self.labelSettingsTitle.setMinimumSize(QtCore.QSize(0, 42))
+        self.labelSettingsTitle.setMaximumSize(QtCore.QSize(16777215, 42))
+        self.labelSettingsTitle.setStyleSheet("QLabel{\n"
+                                              "    background-color: #222222;\n"
+                                              "    font : 22 17pt \"Microsoft JhengHei UI\" ;\n"
+                                              "    color : #FFFFFF;\n"
+                                              "    border-radius : 0px;\n"
+                                              "    text-align : left;\n"
+                                              "    padding: 10px;\n"
+                                              "}\n"
+                                              "")
+        self.labelSettingsTitle.setObjectName("labelSettingsTitle")
+        self.gridLayout_20.addWidget(self.labelSettingsTitle, 0, 0, 1, 1)
         self.gridLayout_19.addWidget(self.frameSettingsContainer, 0, 0, 1, 1)
         self.stackedWidget.addWidget(self.settingsWidget)
         self.workspaceWidget = QtWidgets.QWidget()
@@ -786,12 +865,138 @@ class MainView(QtWidgets.QMainWindow):
         self.groupBoxWorkspace.setObjectName("groupBoxWorkspace")
         self.gridLayout_14 = QtWidgets.QGridLayout(self.groupBoxWorkspace)
         self.gridLayout_14.setObjectName("gridLayout_14")
-        spacerItem10 = QtWidgets.QSpacerItem(
+        spacerItem15 = QtWidgets.QSpacerItem(
+            20, 5, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
+        self.gridLayout_14.addItem(spacerItem15, 10, 1, 1, 1)
+        spacerItem16 = QtWidgets.QSpacerItem(
+            20, 15, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
+        self.gridLayout_14.addItem(spacerItem16, 8, 1, 1, 1)
+        self.pushButtonSelectFile = QtWidgets.QPushButton(
+            parent=self.groupBoxWorkspace)
+        self.pushButtonSelectFile.setMinimumSize(QtCore.QSize(300, 42))
+        self.pushButtonSelectFile.setMaximumSize(QtCore.QSize(500, 16777215))
+        self.pushButtonSelectFile.setStyleSheet("QPushButton{\n"
+                                                "    background-color : #5F3E77;\n"
+                                                "    font : 75 13pt \"Microsoft JhengHei UI\" bold;\n"
+                                                "    color : #FFFFFF;\n"
+                                                "\n"
+                                                "    border : 2px;\n"
+                                                "    border-radius : 20px;\n"
+                                                "\n"
+                                                "    text-align : left;\n"
+                                                "    padding: 10px;\n"
+                                                "}\n"
+                                                "\n"
+                                                "QPushButton:hover{\n"
+                                                "\n"
+                                                "    background-color: #61364F;\n"
+                                                "    color : #FFFFFF;\n"
+                                                "}\n"
+                                                "")
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-file.png"),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButtonSelectFile.setIcon(icon7)
+        self.pushButtonSelectFile.setIconSize(QtCore.QSize(24, 24))
+        self.pushButtonSelectFile.setFlat(True)
+        self.pushButtonSelectFile.setObjectName("pushButtonSelectFile")
+        self.gridLayout_14.addWidget(
+            self.pushButtonSelectFile, 5, 1, 1, 1, QtCore.Qt.AlignmentFlag.AlignRight)
+        self.pushButtonSelectDirectory = QtWidgets.QPushButton(
+            parent=self.groupBoxWorkspace)
+        self.pushButtonSelectDirectory.setMinimumSize(QtCore.QSize(300, 42))
+        self.pushButtonSelectDirectory.setMaximumSize(
+            QtCore.QSize(500, 16777215))
+        self.pushButtonSelectDirectory.setStyleSheet("QPushButton{\n"
+                                                     "    background-color : #5F3E77;\n"
+                                                     "    font : 75 13pt \"Microsoft JhengHei UI\" bold;\n"
+                                                     "    color : #FFFFFF;\n"
+                                                     "\n"
+                                                     "    border : 2px;\n"
+                                                     "    border-radius : 20px;\n"
+                                                     "\n"
+                                                     "    text-align : left;\n"
+                                                     "    padding: 10px;\n"
+                                                     "}\n"
+                                                     "\n"
+                                                     "QPushButton:hover{\n"
+                                                     "\n"
+                                                     "    background-color: #61364F;\n"
+                                                     "    color : #FFFFFF;\n"
+                                                     "}\n"
+                                                     "")
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-folder-open.png"),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButtonSelectDirectory.setIcon(icon8)
+        self.pushButtonSelectDirectory.setIconSize(QtCore.QSize(24, 24))
+        self.pushButtonSelectDirectory.setFlat(True)
+        self.pushButtonSelectDirectory.setObjectName(
+            "pushButtonSelectDirectory")
+        self.gridLayout_14.addWidget(
+            self.pushButtonSelectDirectory, 7, 1, 1, 1, QtCore.Qt.AlignmentFlag.AlignRight)
+        
+        
+        self.pushButtonConvertJSONToXLSX = QtWidgets.QPushButton(
+            parent=self.groupBoxWorkspace)
+        self.pushButtonConvertJSONToXLSX.setMinimumSize(QtCore.QSize(300, 42))
+        self.pushButtonConvertJSONToXLSX.setMaximumSize(QtCore.QSize(500, 16777215))
+        self.pushButtonConvertJSONToXLSX.setStyleSheet("QPushButton{\n"
+                                        "    background-color: #3949AB;\n"
+                                        "\n"
+                                        "    border-radius : 20px;\n"
+                                        "\n"
+                                        "    font : 75 13pt \"Microsoft JhengHei UI\" bold;\n"
+                                        "    color : #FFFFFF;\n"
+                                        "\n"
+                                        "    border : 2px;\n"
+                                        "\n"
+                                        "    text-align : left;\n"
+                                        "    padding: 10px;\n"
+                                        "}\n"
+                                        "\n"
+                                        "QPushButton:hover{\n"
+                                        "    background-color: #303F9F;\n"
+                                        "    color: #FFFFFF;\n"
+                                        "\n"
+                                        "}")
+        icon9 = QtGui.QIcon()
+        icon9.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-loop-circular.png"),
+                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButtonConvertJSONToXLSX.setIcon(icon9)
+        self.pushButtonConvertJSONToXLSX.setIconSize(QtCore.QSize(24, 24))
+        self.pushButtonConvertJSONToXLSX.setFlat(True)
+        self.pushButtonConvertJSONToXLSX.setObjectName("pushButtonConvertJSONToXLSX")
+        self.gridLayout_14.addWidget(
+            self.pushButtonConvertJSONToXLSX, 11, 1, 1, 1, QtCore.Qt.AlignmentFlag.AlignRight)
+        self.labelSelectedFile = QtWidgets.QLabel(
+            parent=self.groupBoxWorkspace)
+        self.labelSelectedFile.setStyleSheet("QLabel {\n"
+                                             "    font: 25 14pt \"Microsoft YaHei UI Light\";\n"
+                                             "    color : #D37242;\n"
+                                             "}")
+        self.labelSelectedFile.setObjectName("labelSelectedFile")
+        self.gridLayout_14.addWidget(self.labelSelectedFile, 1, 1, 1, 1)
+        spacerItem17 = QtWidgets.QSpacerItem(
             20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
-        self.gridLayout_14.addItem(spacerItem10, 8, 1, 1, 1)
-        spacerItem11 = QtWidgets.QSpacerItem(
-            20, 10, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
-        self.gridLayout_14.addItem(spacerItem11, 2, 1, 1, 1)
+        self.gridLayout_14.addItem(spacerItem17, 4, 1, 1, 1)
+        spacerItem18 = QtWidgets.QSpacerItem(
+            20, 20, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
+        self.gridLayout_14.addItem(spacerItem18, 0, 1, 1, 1)
+        self.lineEditSelectedFile = QtWidgets.QLineEdit(
+            parent=self.groupBoxWorkspace)
+        self.lineEditSelectedFile.setMinimumSize(QtCore.QSize(500, 30))
+        self.lineEditSelectedFile.setMaximumSize(QtCore.QSize(500, 30))
+        self.lineEditSelectedFile.setStyleSheet("QLineEdit {\n"
+                                                "    font: 25 13pt \"Microsoft YaHei UI\";\n"
+                                                "    background-color : #222222;\n"
+                                                "    color : #FFFFFF;\n"
+                                                "    border : 2px;\n"
+                                                "    border-radius : 15px;\n"
+                                                "}")
+        self.lineEditSelectedFile.setObjectName("lineEditSelectedFile")
+        self.gridLayout_14.addWidget(
+            self.lineEditSelectedFile, 3, 1, 1, 1, QtCore.Qt.AlignmentFlag.AlignRight)
         self.pushButtonExecuteSelectedFile = QtWidgets.QPushButton(
             parent=self.groupBoxWorkspace)
         self.pushButtonExecuteSelectedFile.setMinimumSize(
@@ -817,93 +1022,32 @@ class MainView(QtWidgets.QMainWindow):
                                                          "    color: #FFFFFF;\n"
                                                          "\n"
                                                          "}")
-        icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(
-            "app/resources/img/icons/24x24/cil-check.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonExecuteSelectedFile.setIcon(icon7)
+        icon10 = QtGui.QIcon()
+        icon10.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-check.png"),
+                         QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButtonExecuteSelectedFile.setIcon(icon10)
         self.pushButtonExecuteSelectedFile.setIconSize(QtCore.QSize(24, 24))
         self.pushButtonExecuteSelectedFile.setFlat(True)
         self.pushButtonExecuteSelectedFile.setObjectName(
             "pushButtonExecuteSelectedFile")
         self.gridLayout_14.addWidget(
-            self.pushButtonExecuteSelectedFile, 7, 1, 1, 1, QtCore.Qt.AlignmentFlag.AlignRight)
-        spacerItem12 = QtWidgets.QSpacerItem(
-            20, 15, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
-        self.gridLayout_14.addItem(spacerItem12, 6, 1, 1, 1)
-        spacerItem13 = QtWidgets.QSpacerItem(
+            self.pushButtonExecuteSelectedFile, 9, 1, 1, 1, QtCore.Qt.AlignmentFlag.AlignRight)
+        spacerItem19 = QtWidgets.QSpacerItem(
+            20, 10, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
+        self.gridLayout_14.addItem(spacerItem19, 2, 1, 1, 1)
+        spacerItem20 = QtWidgets.QSpacerItem(
             20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
-        self.gridLayout_14.addItem(spacerItem13, 4, 1, 1, 1)
-        self.pushButtonSelectFile = QtWidgets.QPushButton(
-            parent=self.groupBoxWorkspace)
-        self.pushButtonSelectFile.setMinimumSize(QtCore.QSize(300, 42))
-        self.pushButtonSelectFile.setMaximumSize(QtCore.QSize(500, 16777215))
-        self.pushButtonSelectFile.setStyleSheet("QPushButton{\n"
-                                                "    background-color : #5F3E77;\n"
-                                                "    font : 75 13pt \"Microsoft JhengHei UI\" bold;\n"
-                                                "    color : #FFFFFF;\n"
-                                                "\n"
-                                                "    border : 2px;\n"
-                                                "    border-radius : 20px;\n"
-                                                "\n"
-                                                "    text-align : left;\n"
-                                                "    padding: 10px;\n"
-                                                "}\n"
-                                                "\n"
-                                                "QPushButton:hover{\n"
-                                                "\n"
-                                                "    background-color: #61364F;\n"
-                                                "    color : #FFFFFF;\n"
-                                                "}\n"
-                                                "")
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(
-            "app/resources/img/icons/24x24/cil-file.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonSelectFile.setIcon(icon8)
-        self.pushButtonSelectFile.setIconSize(QtCore.QSize(24, 24))
-        self.pushButtonSelectFile.setObjectName("pushButtonSelectFile")
-        self.gridLayout_14.addWidget(
-            self.pushButtonSelectFile, 5, 1, 1, 1, QtCore.Qt.AlignmentFlag.AlignRight)
-        self.labelSelectedFile = QtWidgets.QLabel(
-            parent=self.groupBoxWorkspace)
-        self.labelSelectedFile.setStyleSheet("QLabel {\n"
-                                             "    font: 25 14pt \"Microsoft YaHei UI Light\";\n"
-                                             "    color : #D37242;\n"
-                                             "}")
-        self.labelSelectedFile.setObjectName("labelSelectedFile")
-        self.gridLayout_14.addWidget(self.labelSelectedFile, 1, 1, 1, 1)
-        self.listViewFileHistory = QtWidgets.QListView(
-            parent=self.groupBoxWorkspace)
-        self.listViewFileHistory.setStyleSheet("QListView{\n"
-                                               "    background-color : #222222;\n"
-                                               "    font : 75 13pt \"Microsoft JhengHei UI\" bold;\n"
-                                               "    color : #D37242;\n"
-                                               "    border-radius : 0px;\n"
-                                               "    padding-left : 50px;\n"
-                                               "    text-align : left;\n"
-                                               "}")
-        self.listViewFileHistory.setObjectName("listViewFileHistory")
-        self.gridLayout_14.addWidget(self.listViewFileHistory, 9, 1, 1, 2)
-        self.lineEditSelectedFile = QtWidgets.QLineEdit(
-            parent=self.groupBoxWorkspace)
-        self.lineEditSelectedFile.setMinimumSize(QtCore.QSize(500, 0))
-        self.lineEditSelectedFile.setMaximumSize(QtCore.QSize(500, 16777214))
-        self.lineEditSelectedFile.setStyleSheet("QLineEdit {\n"
-                                                "    font: 25 18pt \"Microsoft YaHei UI\";\n"
-                                                "    background-color : #222222;\n"
-                                                "    color : #FFFFFF;\n"
-                                                "    border : 2px;\n"
-                                                "    border-radius : 15px;\n"
-                                                "}")
-        self.lineEditSelectedFile.setObjectName("lineEditSelectedFile")
-        self.gridLayout_14.addWidget(
-            self.lineEditSelectedFile, 3, 1, 1, 1, QtCore.Qt.AlignmentFlag.AlignRight)
-        spacerItem14 = QtWidgets.QSpacerItem(
-            20, 20, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
-        self.gridLayout_14.addItem(spacerItem14, 0, 1, 1, 1)
+        self.gridLayout_14.addItem(spacerItem20, 16, 1, 1, 1)
+        spacerItem21 = QtWidgets.QSpacerItem(
+            20, 15, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
+        self.gridLayout_14.addItem(spacerItem21, 12, 1, 1, 1)
+        spacerItem22 = QtWidgets.QSpacerItem(
+            20, 5, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
+        self.gridLayout_14.addItem(spacerItem22, 6, 1, 1, 1)
         self.gridLayout_18.addWidget(self.groupBoxWorkspace, 0, 1, 1, 1)
         self.treeViewSystem = QtWidgets.QTreeView(
             parent=self.frameWorkspaceContent)
-        self.treeViewSystem.setMinimumSize(QtCore.QSize(250, 0))
+        self.treeViewSystem.setMinimumSize(QtCore.QSize(300, 0))
         self.treeViewSystem.setStyleSheet("QTreeView {\n"
                                           "\n"
                                           "    background-color : #222222;\n"
@@ -917,13 +1061,57 @@ class MainView(QtWidgets.QMainWindow):
                                           "\n"
                                           "QHeaderView::section {\n"
                                           "    background-color : #5F3E77;\n"
-                                          "    font: 27 10pt \"Microsoft YaHei UI Light\" bold;\n"
+                                          "    font: 25 10pt \"Microsoft YaHei UI Light\" bold;\n"
                                           "    color : #FFFFFF;\n"
                                           "    border-radius : 0px;\n"
                                           "    text-align : left;\n"
                                           "}")
         self.treeViewSystem.setObjectName("treeViewSystem")
         self.gridLayout_18.addWidget(self.treeViewSystem, 0, 0, 1, 1)
+        self.listViewFile = QtWidgets.QListView(
+            parent=self.frameWorkspaceContent)
+        self.listViewFile.setStyleSheet("QListView {\n"
+                                        "\n"
+                                        "    background-color : #222222;\n"
+                                        "\n"
+                                        "    font: 25 12pt \"Microsoft YaHei UI Light\";\n"
+                                        "    color : #FFFFFF;\n"
+                                        "\n"
+                                        "    border : 1px solid #5F3E77;\n"
+                                        "\n"
+                                        "}\n"
+                                        "\n"
+                                        "QHeaderView::section {\n"
+                                        "    background-color : #5F3E77;\n"
+                                        "    font: 25 10pt \"Microsoft YaHei UI Light\" bold;\n"
+                                        "    color : #FFFFFF;\n"
+                                        "    border-radius : 0px;\n"
+                                        "    text-align : left;\n"
+                                        "}")
+        self.listViewFile.setObjectName("listViewFile")
+        self.gridLayout_18.addWidget(self.listViewFile, 1, 0, 1, 1)
+        self.listViewFileHistory = QtWidgets.QListView(
+            parent=self.frameWorkspaceContent)
+        self.listViewFileHistory.setStyleSheet("QListView {\n"
+                                        "\n"
+                                        "    background-color : #222222;\n"
+                                        "\n"
+                                        "    font: 25 12pt \"Microsoft YaHei UI Light\";\n"
+                                        "    color : #FFFFFF;\n"
+                                        "\n"
+                                        "    border : 1px solid #5F3E77;\n"
+                                        "\n"
+                                        "}\n"
+                                        "\n"
+                                        "QHeaderView::section {\n"
+                                        "    background-color : #5F3E77;\n"
+                                        "    font: 25 10pt \"Microsoft YaHei UI Light\" bold;\n"
+                                        "    color : #FFFFFF;\n"
+                                        "    border-radius : 0px;\n"
+                                        "    text-align : left;\n"
+                                        "}")
+        self.listViewFileHistory.setObjectName("listViewFileHistory")
+        self.gridLayout_18.addWidget(self.listViewFileHistory, 1, 1, 1, 1)
         self.gridLayout_9.addWidget(self.frameWorkspaceContent, 1, 0, 1, 1)
         self.labelWorkspaceTitle = QtWidgets.QLabel(
             parent=self.frameWorkspaceContainer)
@@ -931,7 +1119,7 @@ class MainView(QtWidgets.QMainWindow):
         self.labelWorkspaceTitle.setMaximumSize(QtCore.QSize(16777215, 42))
         self.labelWorkspaceTitle.setStyleSheet("QLabel{\n"
                                                "    background-color: #222222;\n"
-                                               "    font : 77 17pt \"Microsoft JhengHei UI\" ;\n"
+                                               "    font : 22 17pt \"Microsoft JhengHei UI\" ;\n"
                                                "    color : #FFFFFF;\n"
                                                "    border-radius : 0px;\n"
                                                "    text-align : left;\n"
@@ -959,9 +1147,9 @@ class MainView(QtWidgets.QMainWindow):
         self.gridLayout_5.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_5.setSpacing(0)
         self.gridLayout_5.setObjectName("gridLayout_5")
-        spacerItem15 = QtWidgets.QSpacerItem(
+        spacerItem23 = QtWidgets.QSpacerItem(
             20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.gridLayout_5.addItem(spacerItem15, 6, 0, 1, 1)
+        self.gridLayout_5.addItem(spacerItem23, 6, 0, 1, 1)
         self.pushButtonSwipeSidebar = QtWidgets.QPushButton(
             parent=self.frameSidebar)
         self.pushButtonSwipeSidebar.setMinimumSize(QtCore.QSize(0, 0))
@@ -985,17 +1173,17 @@ class MainView(QtWidgets.QMainWindow):
                                                   "    background-color : #BB673D;\n"
                                                   "}")
         self.pushButtonSwipeSidebar.setText("")
-        icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap(
-            "app/resources/img/icons/24x24/cil-list.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonSwipeSidebar.setIcon(icon9)
+        icon11 = QtGui.QIcon()
+        icon11.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-list.png"),
+                         QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButtonSwipeSidebar.setIcon(icon11)
         self.pushButtonSwipeSidebar.setIconSize(QtCore.QSize(24, 24))
         self.pushButtonSwipeSidebar.setFlat(True)
         self.pushButtonSwipeSidebar.setObjectName("pushButtonSwipeSidebar")
         self.gridLayout_5.addWidget(self.pushButtonSwipeSidebar, 0, 0, 1, 1)
-        spacerItem16 = QtWidgets.QSpacerItem(
+        spacerItem24 = QtWidgets.QSpacerItem(
             20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.gridLayout_5.addItem(spacerItem16, 1, 0, 1, 1)
+        self.gridLayout_5.addItem(spacerItem24, 1, 0, 1, 1)
         self.frameSidebarActions = QtWidgets.QFrame(parent=self.frameSidebar)
         self.frameSidebarActions.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.frameSidebarActions.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
@@ -1032,10 +1220,10 @@ class MainView(QtWidgets.QMainWindow):
                                          "    background-color : #8468aa;\n"
                                          "}\n"
                                          "")
-        icon10 = QtGui.QIcon()
-        icon10.addPixmap(QtGui.QPixmap(
-            "app/resources/img/icons/24x24/cil-browser.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonAPI.setIcon(icon10)
+        icon12 = QtGui.QIcon()
+        icon12.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-browser.png"),
+                         QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButtonAPI.setIcon(icon12)
         self.pushButtonAPI.setIconSize(QtCore.QSize(24, 24))
         self.pushButtonAPI.setFlat(True)
         self.pushButtonAPI.setObjectName("pushButtonAPI")
@@ -1067,10 +1255,10 @@ class MainView(QtWidgets.QMainWindow):
                                           "    background-color : #8468aa;\n"
                                           "}\n"
                                           "")
-        icon11 = QtGui.QIcon()
-        icon11.addPixmap(QtGui.QPixmap(
-            "app/resources/img/icons/24x24/cil-home.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonHome.setIcon(icon11)
+        icon13 = QtGui.QIcon()
+        icon13.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-home.png"),
+                         QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButtonHome.setIcon(icon13)
         self.pushButtonHome.setIconSize(QtCore.QSize(24, 24))
         self.pushButtonHome.setFlat(True)
         self.pushButtonHome.setObjectName("pushButtonHome")
@@ -1103,10 +1291,10 @@ class MainView(QtWidgets.QMainWindow):
                                                "    background-color : #8468aa;\n"
                                                "}\n"
                                                "")
-        icon12 = QtGui.QIcon()
-        icon12.addPixmap(QtGui.QPixmap(
-            "app/resources/img/icons/24x24/cil-mug-tea.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonWorkspace.setIcon(icon12)
+        icon14 = QtGui.QIcon()
+        icon14.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-mug-tea.png"),
+                         QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButtonWorkspace.setIcon(icon14)
         self.pushButtonWorkspace.setIconSize(QtCore.QSize(24, 24))
         self.pushButtonWorkspace.setFlat(True)
         self.pushButtonWorkspace.setObjectName("pushButtonWorkspace")
@@ -1140,10 +1328,10 @@ class MainView(QtWidgets.QMainWindow):
                                               "    background-color : #8468aa;\n"
                                               "}\n"
                                               "")
-        icon13 = QtGui.QIcon()
-        icon13.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-settings.png"),
+        icon15 = QtGui.QIcon()
+        icon15.addPixmap(QtGui.QPixmap("app/resources/img/icons/24x24/cil-settings.png"),
                          QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButtonSettings.setIcon(icon13)
+        self.pushButtonSettings.setIcon(icon15)
         self.pushButtonSettings.setIconSize(QtCore.QSize(24, 24))
         self.pushButtonSettings.setFlat(True)
         self.pushButtonSettings.setObjectName("pushButtonSettings")
@@ -1153,38 +1341,49 @@ class MainView(QtWidgets.QMainWindow):
         self.setCentralWidget(self.centralwidget)
 
         self.retranslateUi()
-
-        self.stackedWidget.setCurrentIndex(0)
-
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(self)
 
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("MainWindow", "MainWindow"))
+
         self.labelHomeTitle.setText(_translate("MainWindow", "Inicio"))
-        self.pushButtonSearch.setText(_translate("MainWindow", "Buscar"))
         self.labelApiTitle.setText(_translate("MainWindow", "API"))
-        self.pushButtonRequestData.setText(
-            _translate("MainWindow", "Solicitar API"))
-        self.pushButtonExportRequestedData.setText(
-            _translate("MainWindow", "Exportar datos solicitados"))
-        self.pushButtonSaveRequestedData.setText(
-            _translate("MainWindow", "Guardar archivo extraido"))
-        self.labeTitleMode.setText(_translate("MainWindow", "Modo"))
-        self.radioButtonDarkMode.setText(
-            _translate("MainWindow", "Modo Oscuro"))
-        self.radioButtonLightMode.setText(
-            _translate("MainWindow", "Modo Claro"))
-        self.pushButtonExecuteSelectedFile.setText(
-            _translate("MainWindow", "Ejecutar archivo"))
-        self.pushButtonSelectFile.setText(
-            _translate("MainWindow", "Seleccionar archivo"))
-        self.labelSelectedFile.setText(_translate(
-            "MainWindow", "Archivo seleccionado"))
         self.labelWorkspaceTitle.setText(
             _translate("MainWindow", "Espacio de trabajo"))
-        self.pushButtonAPI.setText(_translate("MainWindow", "API"))
-        self.pushButtonHome.setText(_translate("MainWindow", "Inicio"))
-        self.pushButtonWorkspace.setText(
-            _translate("MainWindow", "Espacio de Trabajo"))
-        self.pushButtonSettings.setText(_translate("MainWindow", "Ajustes"))
+        self.labelSettingsTitle.setText(_translate("MainWindow", "Ajustes"))
+
+        self.pushButtonHome.setText(_translate("MainWindow", "\t\t\tInicio"))
+        self.pushButtonAPI.setText(_translate("MainWindow", "\t\t\tAPI"))
+        self.pushButtonWorkspace.setText(_translate(
+            "MainWindow", "\t\t\tEspacio de Trabajo"))
+        self.pushButtonSettings.setText(
+            _translate("MainWindow", "\t\t\tAjustes"))
+
+        self.pushButtonSearch.setText(_translate("MainWindow", "\t\t\tBuscar"))
+
+        self.pushButtonRequestData.setText(
+            _translate("MainWindow", "\t\t\tSolicitar API"))
+        self.pushButtonOpenEditor.setText(
+            _translate("MainWindow", "\t\t\tAbrir editor"))
+        self.pushButtonSaveRequestedData.setText(_translate(
+            "MainWindow", "\t\t\tGuardar archivo extraido"))
+
+        self.pushButtonExecuteSelectedFile.setText(
+            _translate("MainWindow", "\t\t\tEjecutar archivo"))
+        self.pushButtonSelectFile.setText(_translate(
+            "MainWindow", "\t\t\tSeleccionar archivo"))
+        self.pushButtonSelectDirectory.setText(_translate(
+            "MainWindow", "\t\t\tSeleccionar directorio"))
+
+        self.pushButtonConvertJSONToXLSX.setText(
+            _translate("MainWindow", "\t\t\tConvertir JSON a XLSX"))
+
+        self.labelSelectedFile.setText(_translate("MainWindow", ""))
+
+        self.labeTitleMode.setText(_translate("MainWindow", "Modo"))
+        self.radioButtonLightMode.setText(
+            _translate("MainWindow", "Modo Claro"))
+        self.radioButtonDarkMode.setText(
+            _translate("MainWindow", "Modo Oscuro"))
