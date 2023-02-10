@@ -27,4 +27,4 @@ class Lilly(object):
             return self.__Controller.main()
         
         except Exception as exception:
-            return self.logger.critical(exception)
+            return self.__logger.critical(exception)
